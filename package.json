@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author":"Iñaki Frutos",
+  "keywords": ["Diario", "Calendario", "Proyecto"]
+}
