@@ -1,0 +1,47 @@
+%Sobre el documento
+\documentclass[12pt]{article}
+\pagestyle{empty}
+\setlength{\parindent}{12pt}
+
+%Importar paquetes
+\usepackage{float}
+\usepackage{amsfonts, amssymb, amsmath}
+\usepackage{enumerate}
+\usepackage[T1]{fontenc} %Allows to works with ñ
+
+%Informaciòn sobre el
+\title{Documentation about diario personal}
+\author{Frutos, I\~{n}aki}
+\date{\today}
+
+%Comienza el texto
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Objetivos del programa}
+\begin{normalsize}
+ El objetivo de este programa es crear un server, con usuarios 	y contraseñas, que sirva para guardar información acerca de lo que se realizó en ese día, con archivos de texto, imagenes y 	links a guardar
+ \end{normalsize}
+\section{Tiempo estimado del proyecto}
+	El tiempo que va a tardar este proyecto va a ser de unas 3 			semanas aproximadamente
+\section{Cosas por hacer}
+	\begin{enumerate}
+		\item Crear archivo HTML del mes
+		\item Crear archivo HTML de la semana
+		\item Crear archivo HTML del día
+		\item Crear el server en JS
+		\begin{enumerate}
+			\item Hacer todas las rutas
+			\item Hacer la parte de las contraseñas
+			\item Buscar sobre como funciona el hashing y hacer para evitar que se pueda robar las contraseñas
+			\item Pensar, diseñar e implementar el JSON a enviar al HTML necesiario para completar el calendario
+		\end{enumerate}
+		\item Crear el CSS
+		\item Crear el js del lado del cliente para administrar bien la informacion mandada
+	\end{enumerate}
+	
+\section{Documentacion sobre el programa}
+	
+	
+\end{document}
