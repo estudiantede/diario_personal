@@ -70,3 +70,28 @@ function is_leap_year(year) {
   }
   return bis
 }
+
+var dias_del_mes = {
+  1  : 31,
+  2  : 28, //Si no es año bisiesto
+  3  : 31,
+  4  : 30,
+  5  : 31,
+  6  : 30,
+  7  : 31,
+  8  : 31,
+  9  : 30,
+  10 : 31,
+  11 : 30,
+  12 : 31,
+}
+
+function cuantos_dias_tiene_el_mes(month, year) {
+  let dias
+  if (is_leap_year(year) === true && month === 2) {
+    dias = 29
+  } else {
+    dias = dias_del_mes[month]
+  }
+  return dias
+}
