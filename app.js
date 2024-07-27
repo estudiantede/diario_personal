@@ -26,10 +26,10 @@ app.get('/', (req, res) => {
 
 //Cosas a buscar:
   /*
-   * Año bisiesto
-   * Cuantos días tiene el mes
-   * En que día cae tal fecha
-   * Cuantas filas ocuparía el mes
+   * Año bisiesto                     V
+   * Cuantos días tiene el mes        X
+   * En que día cae tal fecha         X
+   * Cuantas filas ocuparía el mes    X
    * 
    */
 app.get('/mes', (req, res) => {
@@ -52,4 +52,21 @@ function redireccionar_a_mes_sin_parametros(res) {
   let year = date.getFullYear()
   parameters = '?month=' + month + '&year=' + year
   res.redirect('/mes' + parameters)
+}
+
+//Devuelve true si y solo sí el año es bisiesto
+function is_leap_year(year) {
+  let bis;
+  if (year % 4 != 0) {
+    bis = false
+  }
+  else if (year % 100 != 0) {
+    bis = true
+  }
+  else if (year % 400 != 0) {
+    bis = false
+  } else {
+    bis = true
+  }
+  return bis
 }
