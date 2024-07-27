@@ -128,3 +128,25 @@ function correr_n_lugares_modulo_x(number_to_return, number_to_add, modulo) {
   }
   return res;
 }
+
+function cuantas_filas_ocuparia_un_mes(cantidad_de_dias, dia_en_que_empieza) {
+  let res = Math.trunc(cantidad_de_dias / 7)
+  let dias_que_faltan_acomodar = cantidad_de_dias % 7
+  let suma_de_dias_sin_acomodar = dias_que_faltan_acomodar + dia_en_que_empieza
+  //Suma de dias sin acomodar a lo sumo es 12, por lo que me fijo en dos casos importantes, si es <= 7 o lo contrario
+  if (suma_de_dias_sin_acomodar <= 7) {
+    res += 1
+  } else {
+    res += 2
+  }
+  return res
+}
+
+//month = 12
+//year = 2023
+//cantidad_de_dias_del_mes = cuantos_dias_tiene_el_mes(month, year)
+//cuando_cae_primer_fecha = dia_en_que_cae_la_1er_fecha_de_un_mes(month, year)
+//console.log()
+//console.log(cantidad_de_dias_del_mes)
+//console.log(cuando_cae_primer_fecha)
+//console.log(cuantas_filas_ocuparia_un_mes(cantidad_de_dias_del_mes, dia_en_que_cae_la_1er_fecha_de_un_mes(month, year)))
