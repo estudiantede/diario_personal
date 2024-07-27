@@ -95,3 +95,36 @@ function cuantos_dias_tiene_el_mes(month, year) {
   }
   return dias
 }
+
+function dia_en_que_cae_la_1er_fecha_de_un_mes(month, year) {
+  let date = new Date(year, (month - 1), 1)
+  let dia = date.getDay()
+  // Sunday - Saturday : 0 - 6 
+  //Corregirlo para que vaya desde el Monday - Sunday: 0 - 6
+  return correr_n_lugares_modulo_x(dia, -1, 7) //Lo debería de corregir
+}
+
+//Mi objetivo, tenog que sumar -1, o 6 son lo mismo
+//0 DOM --> 6 DOM
+//1 LUN --> 0 LUN
+//2 MAR --> 1 MAR
+//3 MIE --> 2 MIE
+//4 JUE --> 3 JUE
+//5 VIE --> 4 VIE
+//6 SAB --> 5 SAB
+
+/*
+ * requiere: {true}
+ * asegura: {devuelve el resto}
+ * Los restos son el resto q se obtiene tras hacer la division entre un numero y su divisor, sienod estos 
+ * enteros entre 0 <= x <= modulo - 1
+ */
+function correr_n_lugares_modulo_x(number_to_return, number_to_add, modulo) {
+  let res
+  number_to_return += number_to_add
+  res = number_to_return % modulo;
+  if (res < 0) {
+    res += modulo
+  }
+  return res;
+}
