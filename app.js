@@ -27,18 +27,18 @@ app.get('/', (req, res) => {
 //Cosas a buscar:
   /*
    * Año bisiesto                     V
-   * Cuantos días tiene el mes        X
-   * En que día cae tal fecha         X
-   * Cuantas filas ocuparía el mes    X
+   * Cuantos días tiene el mes        V
+   * En que día cae tal fecha         V
+   * Cuantas filas ocuparía el mes    V
    * 
    */
 app.get('/mes', (req, res) => {
-  if (req.query.month === undefined || req.query.year === undefined) {
+  console.log(req.query["month"])
+  if (req.query["month"] === undefined || req.query["year"] === undefined) {
     redireccionar_a_mes_sin_parametros(res)
   } else {
     res.sendFile(__dirname + '/views/mes_con_6_filas.html')
   }
-  
 
 })
 
