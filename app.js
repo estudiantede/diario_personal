@@ -1,7 +1,8 @@
 //Requires
 body_parser = require('body-parser')
 const express = require('express')
-
+let fs = require('fs');
+const { type } = require('os');
 //Creation of the server
 const app = express()
 const port = 3000
@@ -19,27 +20,49 @@ app.use(function middleware(req, res, next) {
 }) 
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/mes_con_6_filas.html')
-  //redireccionar_a_mes_sin_parametros(res)
+
+  redireccionar_a_mes_sin_parametros(res)
 })
 
-
-//Cosas a buscar:
-  /*
-   * Año bisiesto                     V
-   * Cuantos días tiene el mes        V
-   * En que día cae tal fecha         V
-   * Cuantas filas ocuparía el mes    V
-   * 
-   */
 app.get('/mes', (req, res) => {
   console.log(req.query["month"])
+  let mes = req.query["month"]
+  let year = req.query["year"]
+  
   if (req.query["month"] === undefined || req.query["year"] === undefined) {
     redireccionar_a_mes_sin_parametros(res)
   } else {
     res.sendFile(__dirname + '/views/mes_con_6_filas.html')
   }
 
+})
+
+app.post('/api/mes', (req, res) => {
+  if (req.body['month'] === undefined || req.body['year'] === undefined) {
+    console.log("Hubo problemas")
+    res.status(404).send('NO SE CUMPLEN LOS ARGUMENTOS PARA PASARLOS')
+  }
+  let mes = req.body['month']
+  let year = req.body['year']
+  let mes_anterior, year_anterior;
+  is_year_bis = is_leap_year(mes)
+  cantidad_de_dias_del_mes = cuantos_dias_tiene_el_mes(mes, year)
+  cuando_cae_1er_dia = dia_en_que_cae_la_1er_fecha_de_un_mes(mes, year)
+  if (mes === 1) {
+    mes_anterior = 12
+    year_anterior = year - 1
+  }  else {
+    mes_anterior = mes - 1
+    year_anterior = year
+  }
+  cantidad_de_dias_del_mes_anterior = cuantos_dias_tiene_el_mes(mes_anterior, year_anterior)
+  res.json({
+    "is_year_bis" : is_year_bis,
+    "cantidad_de_dias_del_mes" : cantidad_de_dias_del_mes,
+    "cuando_cae_1er_dia" : cuando_cae_1er_dia,
+    "cantidad_de_dias_del_mes_anterior" : cantidad_de_dias_del_mes_anterior,
+    "cuantas_filas_ocupa_el_mes" : cuantas_filas_ocuparia_un_mes(cantidad_de_dias_del_mes, cuando_cae_1er_dia)
+  })
 })
 
 app.listen(port, () => {
@@ -141,6 +164,8 @@ function cuantas_filas_ocuparia_un_mes(cantidad_de_dias, dia_en_que_empieza) {
   }
   return res
 }
+
+
 
 //month = 12
 //year = 2023
