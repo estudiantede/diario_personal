@@ -42,23 +42,33 @@ async function llamar_funcion(month, year) {
 function escribir_nombre_calendario(info_sobre_calendario) {
     let cantidad_de_dias = info_sobre_calendario["cantidad_de_dias_del_mes"]
     let cantidad_de_dias_del_mes_anterior = info_sobre_calendario["cantidad_de_dias_del_mes_anterior"]
-    inner_table_html = '<tr> \
-                    <th>LUN</th> \
-                    <th>MAR</th> \
-                    <th>MIE</th> \
-                    <th>JUE</th> \
-                    <th>VIE</th> \
-                    <th>SAB</th> \
-                    <th>DOM</th> \
+    let cuantas_filas_ocupa_el_mes = info_sobre_calendario["cuantas_filas_ocupa_el_mes"]
+    let cuando_cae_1er_dia = info_sobre_calendario["cuando_cae_1er_dia"]
+    let numero_de_dia_puesto_en_calendario = 1
+    inner_table_html = '<tr>\n \
+                    <th>LUN</th>\n \
+                    <th>MAR</th>\n \
+                    <th>MIE</th>\n \
+                    <th>JUE</th>\n \
+                    <th>VIE</th>\n \
+                    <th>SAB</th>\n \
+                    <th>DOM</th>\n \
                 </tr>'  //Se van a agregar las 7 * 6 filas, cada una con su respectivo ID, así como clase
 
     for (let i = 0; i < 6; i++) {//Las 6 filas agregando 
         inner_table_html += '<tr>'
         for(let k = 0; k < 7; k++) {
-            if ()
+            if (cuando_cae_1er_dia === 0) {
+                inner_table_html += '<td>' + numero_de_dia_puesto_en_calendario + '</td>\n'
+            } else {
+                inner_table_html += '<td>' + (cantidad_de_dias_del_mes_anterior - cuando_cae_1er_dia) + '</td>\n'
+                cuando_cae_1er_dia -= 1
+            }
+            numero_de_dia_puesto_en_calendario += 1
         }
     inner_table_html += '</tr>'
     }
+    return inner_table_html
 }
 
 
